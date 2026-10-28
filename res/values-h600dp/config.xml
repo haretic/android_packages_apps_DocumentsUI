@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <!-- A breadcrumb holding only the root shows from 600dp tall, as stock -->
+    <bool name="show_root_only_breadcrumb">true</bool>
+</resources>

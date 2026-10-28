@@ -15,5 +15,4 @@
 -->
 <resources>
     <bool name="show_search_chips_when_browsing">true</bool>
-    <bool name="show_root_only_breadcrumb">true</bool>
 </resources>
