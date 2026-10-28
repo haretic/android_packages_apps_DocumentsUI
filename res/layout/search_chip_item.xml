@@ -20,6 +20,7 @@
     android:checkable="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:minHeight="@dimen/search_chip_touch_target"
     android:layout_marginStart="@dimen/search_chip_half_spacing"
     android:layout_marginEnd="@dimen/search_chip_half_spacing"
     android:textAppearance="@style/SearchChipText"
@@ -31,5 +32,6 @@
     app:chipStrokeWidth="1dp"
     app:iconStartPadding="@dimen/search_chip_icon_padding"
     app:rippleColor="@color/search_chip_ripple_color"
-    app:chipMinTouchTargetSize="@dimen/button_touch_size"
+    app:chipMinHeight="@dimen/search_chip_min_height"
+    app:chipMinTouchTargetSize="@dimen/search_chip_touch_target"
 />

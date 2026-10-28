@@ -602,6 +602,7 @@ public class SearchViewManager implements
 
     private void onSearchExpanded() {
         mSearchExpanded = true;
+        mChipViewManager.setSearchActive(true);
         if (mFullBar && mMenu != null) {
             showNonSearchOptionMenus(false);
         }
@@ -676,6 +677,8 @@ public class SearchViewManager implements
             setCurrentSearch(null);
         }
 
+        mChipViewManager.setSearchActive(false);
+
         if (mFullBar && mMenuItem != null) {
             mMenuItem.collapseActionView();
         }
@@ -749,7 +752,8 @@ public class SearchViewManager implements
         boolean shouldClose;
         synchronized (mSearchLock) {
             shouldClose =
-                    !(hasFocus || mChipViewManager.hasCheckedItems() || mQueuedSearchTask != null);
+                    !(hasFocus || mChipViewManager.hasCheckedItems() || mQueuedSearchTask != null
+                            || mChipViewManager.shouldKeepSearchOpenForChips());
         }
         if (shouldClose) {
             if (mCurrentSearch == null) {

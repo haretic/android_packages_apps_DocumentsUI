@@ -54,6 +54,12 @@
         <item name="titleTextAppearance">@style/AppBarTitle</item>
     </style>
 
+    <!-- Keep toolbar actions at 48dp in short windows, including selection mode. -->
+    <style name="DirectoryToolbarSize" parent="">
+        <item name="android:layout_height">48dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+
     <style name="ThumbnailCardViewStyle" parent="@style/Widget.Material3.CardView.Outlined">
         <item name="cardBackgroundColor">?attr/colorSurfaceContainerLowest</item>
         <item name="cardPreventCornerOverlap">false</item>
@@ -165,6 +171,9 @@
     </style>
 
     <style name="SearchChipItemStyle" parent="@style/Widget.Material3.Chip.Filter">
+        <item name="android:minHeight">@dimen/search_chip_touch_target</item>
+        <item name="chipMinHeight">@dimen/search_chip_min_height</item>
+        <item name="chipMinTouchTargetSize">@dimen/search_chip_touch_target</item>
         <item name="android:textAppearance">@style/SearchChipTextM3</item>
         <item name="chipBackgroundColor">@color/search_chip_background_color_m3</item>
         <item name="chipStrokeColor">@color/search_chip_stroke_color_m3</item>

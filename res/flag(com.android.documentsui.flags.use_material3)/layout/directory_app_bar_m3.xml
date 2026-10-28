@@ -51,9 +51,9 @@
         </LinearLayout>
 
         <com.google.android.material.appbar.MaterialToolbar
+            style="@style/DirectoryToolbarSize"
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
             android:touchscreenBlocksFocus="false"
             android:background="?attr/colorSurfaceBright"
             app:layout_collapseMode="pin">
@@ -74,7 +74,7 @@
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/searchbar_title"
                 android:layout_width="match_parent"
-                android:layout_height="?android:attr/actionBarSize"
+                android:layout_height="match_parent"
                 android:gravity="center_vertical"
                 android:text="@string/search_bar_hint"
                 android:textAppearance="@style/AppBarTitle" />
@@ -82,9 +82,9 @@
         </com.google.android.material.appbar.MaterialToolbar>
 
         <com.google.android.material.appbar.MaterialToolbar
+            style="@style/DirectoryToolbarSize"
             android:id="@+id/selection_bar"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
             android:touchscreenBlocksFocus="false"
             android:background="?attr/colorSurfaceBright"
             android:visibility="gone"
