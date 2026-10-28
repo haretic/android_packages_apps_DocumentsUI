@@ -15,6 +15,9 @@
 -->
 
 <resources>
+    <!-- Hide browsing chips in short windows. Search still exposes all filters. -->
+    <bool name="show_search_chips_when_browsing">false</bool>
+
     <!-- Intentionally unset. Vendors should set this in an overlay. -->
     <string name="trusted_quick_viewer_package" translatable="false"></string>
 

@@ -42,9 +42,10 @@
     <dimen name="grid_padding_horiz">4dp</dimen>
     <dimen name="grid_padding_vert">4dp</dimen>
     <dimen name="list_item_width">72dp</dimen>
-    <dimen name="list_item_height">72dp</dimen>
+    <!-- Compact defaults for windows below 600dp high; values-h600dp restores stock sizes. -->
+    <dimen name="list_item_height">56dp</dimen>
     <dimen name="list_item_padding">16dp</dimen>
-    <dimen name="list_item_icon_padding">16dp</dimen>
+    <dimen name="list_item_icon_padding">8dp</dimen>
     <dimen name="summary_drawable_padding">0dp</dimen>
     <dimen name="breadcrumb_item_padding">8dp</dimen>
     <dimen name="breadcrumb_item_height">36dp</dimen>
@@ -67,7 +68,7 @@
     <dimen name="drag_shadow_padding">8dp</dimen>
 
     <dimen name="doc_header_sort_icon_size">16dp</dimen>
-    <dimen name="doc_header_height">60dp</dimen>
+    <dimen name="doc_header_height">32dp</dimen>
 
     <dimen name="dropdown_sort_widget_margin">12dp</dimen>
     <dimen name="dropdown_sort_widget_size">54dp</dimen>
@@ -90,7 +91,7 @@
 
     <dimen name="inspector_header_height">280dp</dimen>
 
-    <dimen name="root_info_header_height">60dp</dimen>
+    <dimen name="root_info_header_height">40dp</dimen>
     <dimen name="root_info_header_horizontal_padding">24dp</dimen>
 
     <dimen name="search_chip_group_margin">20dp</dimen>
@@ -98,6 +99,8 @@
     <dimen name="search_chip_half_spacing">4dp</dimen>
     <dimen name="search_chip_icon_padding">4dp</dimen>
     <dimen name="search_chip_radius">16dp</dimen>
+    <dimen name="search_chip_min_height">28dp</dimen>
+    <dimen name="search_chip_touch_target">32dp</dimen>
 
     <dimen name="dialog_content_padding_top">18dp</dimen>
     <dimen name="dialog_content_padding_bottom">24dp</dimen>
@@ -119,7 +122,7 @@
     <dimen name="search_bar_radius">8dp</dimen>
     <dimen name="search_bar_background_margin_start">0dp</dimen>
     <dimen name="search_bar_background_margin_end">0dp</dimen>
-    <dimen name="search_bar_margin">8dp</dimen>
+    <dimen name="search_bar_margin">0dp</dimen>
     <dimen name="search_bar_text_size">16dp</dimen>
 
     <dimen name="action_bar_elevation">3dp</dimen>

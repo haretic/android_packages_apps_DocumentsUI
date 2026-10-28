@@ -92,6 +92,8 @@ public class SearchChipViewManager {
     private SearchChipViewManagerListener mListener;
     private String[] mCurrentUpdateMimeTypes;
     private boolean mIsFirstUpdateChipsReady;
+    private boolean mChipsRowEnabled = true;
+    private boolean mSearchActive;
     private final List<SearchChipData> mMimeDataStack = new ArrayList<>(4);
 
     @VisibleForTesting
@@ -163,8 +165,29 @@ public class SearchChipViewManager {
      * @param show the value to show/hide the chips row.
      */
     public void setChipsRowVisible(boolean show) {
+        mChipsRowEnabled = show;
+        updateChipsRowVisibility();
+    }
+
+    private void updateChipsRowVisibility() {
+        final boolean showWhileBrowsing = mChipGroup.getResources().getBoolean(
+                R.bool.show_search_chips_when_browsing);
         // if there is only one matched chip, hide the chip group.
-        mChipGroup.setVisibility(show && mChipGroup.getChildCount() > 1 ? View.VISIBLE : View.GONE);
+        mChipGroup.setVisibility(mChipsRowEnabled && mChipGroup.getChildCount() > 1
+                && (showWhileBrowsing || mSearchActive || hasCheckedItems())
+                ? View.VISIBLE : View.GONE);
+    }
+
+    /** Keep all filters reachable through Search when browsing chips are hidden. */
+    public void setSearchActive(boolean active) {
+        mSearchActive = active;
+        updateChipsRowVisibility();
+    }
+
+    /** Allow keyboard focus to leave the search field without hiding the filters. */
+    public boolean shouldKeepSearchOpenForChips() {
+        return mSearchActive && mChipGroup.getVisibility() == View.VISIBLE
+                && !mChipGroup.getResources().getBoolean(R.bool.show_search_chips_when_browsing);
     }
 
     /**

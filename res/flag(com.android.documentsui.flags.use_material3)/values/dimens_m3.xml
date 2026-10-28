@@ -72,15 +72,16 @@
     <dimen name="list_header_inner_padding">16dp</dimen>
     <dimen name="list_header_outer_margin">12dp</dimen>
     <dimen name="list_item_inner_padding">4dp</dimen>
-    <dimen name="list_item_height_m3">56dp</dimen>
+    <!-- Compact defaults; values-h600dp restores the stock sizes on tall windows. -->
+    <dimen name="list_item_height_m3">48dp</dimen>
     <dimen name="list_item_padding_start">16dp</dimen>
     <dimen name="list_item_padding_end">8dp</dimen>
-    <dimen name="list_item_padding_vertical">4dp</dimen>
+    <dimen name="list_item_padding_vertical">2dp</dimen>
     <dimen name="list_item_icon_margin_end">@dimen/space_extra_small_4</dimen>
     <dimen name="list_item_icon_wrapper_margin_end">12dp</dimen>
     <dimen name="list_item_icon_wrapper_size">35dp</dimen>
     <dimen name="list_item_icon_size">32dp</dimen>
-    <dimen name="list_item_preview_icon_size">48dp</dimen>
+    <dimen name="list_item_preview_icon_size">44dp</dimen>
     <!-- TODO(b/379776735): remove this block after use_material3 flag is launched. -->
     <dimen name="list_item_width_m3">72dp</dimen>
     <dimen name="list_item_padding_m3">16dp</dimen>
@@ -185,7 +186,7 @@
     <dimen name="doc_header_sort_icon_height">32dp</dimen>
     <dimen name="doc_header_sort_icon_margin_start">10dp</dimen>
     <dimen name="doc_header_sort_icon_radius">100dp</dimen>
-    <dimen name="doc_header_height_m3">48dp</dimen>
+    <dimen name="doc_header_height_m3">32dp</dimen>
 
     <dimen name="dropdown_sort_widget_margin_m3">12dp</dimen>
     <dimen name="dropdown_sort_widget_size_m3">54dp</dimen>
@@ -216,7 +217,7 @@
     <dimen name="search_chip_radius_m3">8dp</dimen>
     <!-- block end -->
 
-    <dimen name="search_chip_group_padding_vertical">@dimen/space_extra_small_4</dimen>
+    <dimen name="search_chip_group_padding_vertical">2dp</dimen>
     <dimen name="search_chip_inactive_stroke_width">1dp</dimen>
     <dimen name="main_container_padding_start">@dimen/space_small_4</dimen>
     <dimen name="main_container_padding_end">@dimen/space_small_4</dimen>
