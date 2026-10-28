@@ -401,7 +401,8 @@ public class NavigationViewManager implements AppBarLayout.OnOffsetChangedListen
         }
         if (VERBOSE) Log.v(TAG, "New toolbar title is: " + title);
         mToolbar.setTitle(title);
-        mBreadcrumbController.setNavBreadcrumbVisible(true);
+        mBreadcrumbController.setNavBreadcrumbVisible(mState.stack.size() > 1
+                || mActivity.getResources().getBoolean(R.bool.show_root_only_breadcrumb));
     }
 
     private void updateScrollFlag() {
