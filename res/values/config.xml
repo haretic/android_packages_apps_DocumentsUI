@@ -17,7 +17,7 @@
 <resources>
     <!-- Hide browsing chips in short windows. Search still exposes all filters. -->
     <bool name="show_search_chips_when_browsing">false</bool>
-    <!-- In short windows, a breadcrumb holding only the root the toolbar names is hidden -->
+    <!-- Below 600dp tall, as the R1 in either orientation, a breadcrumb holding only the root the toolbar names is hidden -->
     <bool name="show_root_only_breadcrumb">false</bool>
 
     <!-- Intentionally unset. Vendors should set this in an overlay. -->
