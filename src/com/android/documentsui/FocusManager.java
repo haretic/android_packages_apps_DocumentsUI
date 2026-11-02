@@ -151,7 +151,7 @@ public final class FocusManager extends FocusDelegate<String> implements FocusHa
 
     @Override
     public boolean focusDirectoryList() {
-        if (!mScope.isValid() || mScope.adapter.getItemCount() == 0) {
+        if (!mScope.isValid() || mScope.adapter.getStableIds().isEmpty()) {
             if (DEBUG) {
                 Log.v(TAG, "Nothing to focus.");
             }
@@ -186,6 +186,24 @@ public final class FocusManager extends FocusDelegate<String> implements FocusHa
      */
     @Override
     public void onLayoutCompleted() {
+        if (!mScope.isValid()) {
+            return;
+        }
+
+        // Empty-state messages are adapter items, but they are not documents to focus.
+        final boolean hasDocuments = !mScope.adapter.getStableIds().isEmpty();
+        final View root = mScope.view.getRootView();
+        final View focused = root.findFocus();
+        mScope.view.setFocusable(hasDocuments);
+        if (!hasDocuments && !mScope.model.isLoading()
+                && (focused == null || focused == mScope.view
+                        || focused == root.findViewById(getRes(R.id.coordinator_layout)))) {
+            final View toolbar = root.findViewById(getRes(R.id.toolbar));
+            if (toolbar != null) {
+                toolbar.requestFocus(View.FOCUS_FORWARD);
+            }
+        }
+
         if (mScope.pendingFocusId == null) {
             return;
         }

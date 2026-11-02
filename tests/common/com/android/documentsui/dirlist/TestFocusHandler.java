@@ -31,6 +31,7 @@ public final class TestFocusHandler implements FocusHandler {
     public String focusModelId;
     public boolean advanceFocusAreaCalled;
     public boolean focusDirectoryCalled;
+    public boolean focusDirectoryResult = true;
 
     @Override
     public boolean handleKey(DocumentHolder doc, int keyCode, KeyEvent event) {
@@ -50,7 +51,7 @@ public final class TestFocusHandler implements FocusHandler {
     @Override
     public boolean focusDirectoryList() {
         focusDirectoryCalled = true;
-        return true;
+        return focusDirectoryResult;
     }
 
     @Override
