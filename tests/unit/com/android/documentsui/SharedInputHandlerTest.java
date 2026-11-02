@@ -224,6 +224,16 @@ public class SharedInputHandlerTest {
     }
 
     @Test
+    public void testNavKey_EmptyDirectoryLeavesNavigationUnhandled() {
+        mFocusHandler.focusDirectoryResult = false;
+        for (int keyCode : new int[] {KeyEvent.KEYCODE_DPAD_UP, KeyEvent.KEYCODE_DPAD_DOWN}) {
+            KeyEvent event = new KeyEvent(KeyEvent.ACTION_DOWN, keyCode);
+            assertFalse(mSharedInputHandler.onKeyDown(keyCode, event));
+        }
+        assertTrue(mFocusHandler.focusDirectoryCalled);
+    }
+
+    @Test
     public void testSearchKey_LaunchSearchView() {
         KeyEvent searchEvent =
                 new KeyEvent(0, 0, MotionEvent.ACTION_DOWN, KeyEvent.KEYCODE_SEARCH, 0, 0);

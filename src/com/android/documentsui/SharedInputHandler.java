@@ -97,11 +97,9 @@ public class SharedInputHandler {
                 // Instead of duplicating the switch-case in #isNavigationKeyCode, best just to
                 // leave it here.
                 if (Events.isNavigationKeyCode(keyCode)) {
-                    // Forward all unclaimed navigation keystrokes to the directory list.
-                    // This causes any stray navigation keystrokes to focus the content pane,
-                    // which is probably what the user is trying to do.
-                    mFocusManager.focusDirectoryList();
-                    return true;
+                    // Focus documents when available. An empty list must leave navigation
+                    // unhandled so normal focus navigation can reach other controls.
+                    return mFocusManager.focusDirectoryList();
                 }
                 return false;
         }

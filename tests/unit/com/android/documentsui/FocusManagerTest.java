@@ -22,6 +22,7 @@ import static com.android.documentsui.util.Material3Config.getRes;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
@@ -42,6 +43,7 @@ import androidx.test.filters.SmallTest;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.android.documentsui.base.UserId;
+import com.android.documentsui.dirlist.DocumentsAdapter;
 import com.android.documentsui.dirlist.TestData;
 import com.android.documentsui.rules.OverrideFlagsRule;
 import com.android.documentsui.testing.TestFeatures;
@@ -112,6 +114,30 @@ public class FocusManagerTest {
                 mFeatures, SelectionHelpers.createTestInstance(), null, null, 0)
                 .reset(mView, new TestModel(UserId.DEFAULT_USER, TEST_AUTHORITY, mFeatures));
         assertFalse(mManager.focusDirectoryList());
+    }
+
+    @Test
+    public void testFocusDirectoryList_onlyEmptyMessage() {
+        DocumentsAdapter adapter = mock(DocumentsAdapter.class);
+        when(adapter.getItemCount()).thenReturn(1);
+        when(adapter.getStableIds()).thenReturn(new ArrayList<>());
+        RecyclerView view = mock(RecyclerView.class);
+        when(view.getAdapter()).thenReturn(adapter);
+        when(view.getLayoutManager()).thenReturn(mTestGridLayoutManager);
+        mManager.reset(view, new TestModel(UserId.DEFAULT_USER, TEST_AUTHORITY, mFeatures));
+
+        assertFalse(mManager.focusDirectoryList());
+    }
+
+    @Test
+    public void testOnLayoutCompleted_emptyListCannotTakeFocus() {
+        mView.setItems(new ArrayList<>());
+        mManager.onLayoutCompleted();
+        assertFalse(mView.isFocusable());
+
+        mView.setItems(ITEMS);
+        mManager.onLayoutCompleted();
+        assertTrue(mView.isFocusable());
     }
 
     @Test
