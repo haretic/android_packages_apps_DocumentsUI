@@ -56,6 +56,9 @@
             <!-- END DIMEN -->
 
             <!-- START DRAWABLE -->
+            <!-- The launcher icon's layers -->
+            <item type="drawable" name="ic_launcher_background"/>
+            <item type="drawable" name="ic_launcher_foreground"/>
             <!-- TODO(b/428096297): Update these icons when force_material3 is true by default.
                  The following icons are still using the old SVGs (no "_m3" counterparts) to make
                  sure it doesn't break OEM if they override them in their RRO.
