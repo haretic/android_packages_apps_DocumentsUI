@@ -14,12 +14,14 @@
 -->
 
 <resources>
-  <!-- ?attr/colorSurfaceContainer -->
-  <color name="app_background_color_m3">@color/m3_ref_palette_dynamic_neutral_variant12</color>
+  <!-- ?attr/colorSurfaceContainer. haretic: the system's own, black with the black theme as
+       Settings' page, not a fixed grey tone a step above every other app's dark page -->
+  <color name="app_background_color_m3">@android:color/system_surface_container_dark</color>
   <!-- ?attr/colorPrimary -->
   <color name="primary_m3">@android:color/system_accent1_200</color>
-  <!-- ?attr/colorSurfaceContainerHigh -->
-  <color name="color_surface_header_m3">@color/m3_ref_palette_dynamic_neutral_variant17</color>
+  <!-- ?attr/colorSurfaceContainerHigh. haretic: the page's colour, the bars as dark as the page as
+       in Settings -->
+  <color name="color_surface_header_m3">@android:color/system_surface_container_dark</color>
 
   <!-- All drag drop badge colors, we can only use system color tokens because there's no theme
        context inside the view.
