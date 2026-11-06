@@ -70,9 +70,9 @@ public class LauncherActivity extends Activity {
     private void launch() {
         ActivityManager activities = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
 
-        Intent intent = findTask(activities);
-        if (intent != null) {
-            if (restoreTask(intent)) {
+        AppTask task = findTask(activities);
+        if (task != null) {
+            if (restoreTask(task)) {
                 return;
             } else {
                 // We failed to restore the task. It may happen when system was just updated and we
@@ -85,13 +85,13 @@ public class LauncherActivity extends Activity {
         startTask();
     }
 
-    private @Nullable Intent findTask(ActivityManager activities) {
+    private @Nullable AppTask findTask(ActivityManager activities) {
         List<AppTask> tasks = activities.getAppTasks();
         for (AppTask task : tasks) {
             Intent intent = task.getTaskInfo().baseIntent;
             Uri uri = intent.getData();
             if (isLaunchUri(uri)) {
-                return intent;
+                return task;
             }
         }
         return null;
@@ -111,17 +111,21 @@ public class LauncherActivity extends Activity {
         startActivity(intent);
     }
 
-    private boolean restoreTask(Intent intent) {
-        if (DEBUG) {
-            Log.d(TAG, "Restoring existing task > " + intent.getData());
-        }
+    private boolean restoreTask(AppTask task) {
+        Uri uri = null;
         try {
-            // TODO: This doesn't appear to restore a task once it has stopped running.
-            startActivity(intent);
+            uri = task.getTaskInfo().baseIntent.getData();
+            if (DEBUG) {
+                Log.d(TAG, "Restoring existing task > " + uri);
+            }
+            // FilesActivity is documentLaunchMode="always": starting the task's base intent again
+            // made a new task on every launch, the recents filling with Files. Bring the task
+            // there is to the front instead, which also restores one no longer running.
+            task.moveToFront();
 
             return true;
         } catch (Exception e) {
-            Log.w(TAG, "Failed to restore task > " + intent.getData() +
+            Log.w(TAG, "Failed to restore task > " + uri +
                     ". Clear all existing tasks and start a new one.", e);
         }
 
