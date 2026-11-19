@@ -169,13 +169,37 @@ public final class FocusManager extends FocusDelegate<String> implements FocusHa
             return false;
         }
 
-        final int focusPos = (mScope.lastFocusPosition != RecyclerView.NO_POSITION)
-                ? mScope.lastFocusPosition
-                : mScope.layout.findFirstVisibleItemPosition();
+        // The last focused row only while it is still laid out in this list: a position kept from
+        // another folder, or a row a reload took away, has no holder, and focusItem's scroll to
+        // it never ends where none is needed, leaving the focus on the coordinator's focus sink
+        int focusPos = mScope.lastFocusPosition;
+        if (focusPos == RecyclerView.NO_POSITION
+                || focusPos >= mScope.adapter.getItemCount()
+                || mScope.view.findViewHolderForAdapterPosition(focusPos) == null) {
+            focusPos = mScope.layout.findFirstCompletelyVisibleItemPosition();
+            if (focusPos == RecyclerView.NO_POSITION) {
+                focusPos = mScope.layout.findFirstVisibleItemPosition();
+            }
+        }
         if (focusPos == RecyclerView.NO_POSITION) {
             return false;
         }
 
+        final RecyclerView.ViewHolder vh = mScope.view.findViewHolderForAdapterPosition(focusPos);
+        if (vh != null) {
+            // Only claimed when a row took it: otherwise the window's own focus step goes on
+            // into the list rather than the key being swallowed with the focus left where it was
+            if (vh.itemView.requestFocus()) {
+                return true;
+            }
+            for (int i = 0; i < mScope.view.getChildCount(); i++) {
+                final View child = mScope.view.getChildAt(i);
+                if (child.isFocusable() && child.requestFocus()) {
+                    return true;
+                }
+            }
+            return false;
+        }
         focusItem(focusPos);
         return true;
     }
