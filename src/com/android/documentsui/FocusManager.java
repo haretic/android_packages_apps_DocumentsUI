@@ -229,6 +229,14 @@ public final class FocusManager extends FocusDelegate<String> implements FocusHa
         }
 
         if (mScope.pendingFocusId == null) {
+            // Rows are in but the focus is still on the coordinator's focus sink, as on a cold
+            // start or after a reload took the focused row's holder away: onto a row, so the
+            // wheel's ring shows and a press acts. Not in touch mode, where nothing is focused.
+            if (hasDocuments && !mScope.model.isLoading() && !root.isInTouchMode()
+                    && (focused == null || focused == mScope.view
+                            || focused == root.findViewById(getRes(R.id.coordinator_layout)))) {
+                focusDirectoryList();
+            }
             return;
         }
 
